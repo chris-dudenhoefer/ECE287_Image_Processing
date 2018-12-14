@@ -1,4 +1,40 @@
-VGA
+VGA- our VGA code is a modified variation of the following found on https://blog.csdn.net/FPGADesigner/article/details/75193699
+
+/////////////////////////////////////////////////////////////////////
+
+      //水平扫描
+    always@(posedge clk_25M or negedge RSTn)    
+        if(!RSTn) x_cnt <= 'd0;
+        else if (x_cnt == H_SYNC_TOTAL) x_cnt <= 'd0;
+        else  x_cnt <= x_cnt + 1'b1;
+
+    //垂直扫描
+    always@(posedge clk_25M or negedge RSTn)    
+        if(!RSTn) y_cnt <= 'd0;
+        else if (y_cnt == V_SYNC_TOTAL) y_cnt <= 'd0;
+        else if (x_cnt == H_SYNC_TOTAL) y_cnt <= y_cnt + 1'b1;
+        else y_cnt <= y_cnt;
+
+    //H_SYNC信号
+    always@(posedge clk_25M or negedge RSTn)    
+        if(!RSTn) hsync <= 'd0;
+        else if (x_cnt == 'd0) hsync <= 1'b0;
+        else if (x_cnt == H_SYNC_END) hsync <= 1'b1;
+        else  hsync <= hsync;
+
+    //V_SYNC信号
+    always@(posedge clk_25M or negedge RSTn)    
+        if(!RSTn) vsync <= 'd0;
+        else if (y_cnt == 'd0) vsync <= 1'b0;
+        else if (y_cnt == V_SYNC_END) vsync <= 1'b1;
+        else  vsync <= vsync;   
+--------------------- 
+作者：FPGADesigner 
+来源：CSDN 
+原文：https://blog.csdn.net/FPGADesigner/article/details/75193699 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+/////////////////////////////////////////////////////////////////////
 
 Matlab Script
 
