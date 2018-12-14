@@ -2,16 +2,16 @@ module ye_project(clk, rst, rst1, data_r, data_g, data_b, hsync, vsync, clk_25M,
 
 input clk,rst;
 input rst1;
-input [2:0] filter; 		 //set filter enable inputs
+input [2:0] filter; 	//set filter enable inputs
    parameter ID=3'd0;   	//identity
-   parameter INV=3'd1;     //invert 
-   parameter BL=3'd2;      //brighten        
-   parameter BR=3'd3;      //blur
-   parameter CUST=3'd4;    //custom  
+   parameter INV=3'd1;     	//invert 
+   parameter BL=3'd2;      	//brighten        
+   parameter BR=3'd3;      	//blur
+   parameter CUST=3'd4;    	//custom  
 
-input [2:0]k_in;           //custom kernel inputs
-input store;					//store values
-input div;						//determine custom divide value
+input [2:0]k_in;       	//custom kernel inputs
+input store;		//store values
+input div;		//determine divide value of custom
    
 parameter    WIDTH  = 200;    // Image width
 parameter    HEIGHT  = 200;   // Image height
