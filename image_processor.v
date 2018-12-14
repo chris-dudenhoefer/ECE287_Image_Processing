@@ -248,22 +248,22 @@ always@(*)					//State Transition Controls
 		i_increment:begin				//I_INCREMENT state increments kernel index value and automatically sends back to INPUT_VALUE for next kernel input
             		case(filter)
 				ID:  	NS=identity;
-				INV:  NS=invert;
-				BL:   NS=blur;
-             			BR:   NS=brighten;
-               			CUST: NS=input_value;  
+				INV:  	NS=invert;
+				BL:   	NS=blur;
+             			BR:   	NS=brighten;
+               			CUST: 	NS=input_value;  
 			endcase
 		end
 				
          	display_custom:begin				//DISPLAY_CUSTOM state ends custom kernel sequence and waits for next filter selection
             		case(filter)
-					ID:  	NS=identity;
-					INV:  NS=invert;
-					BL:   NS=blur;
-               				BR:   NS=brighten;
-               				CUST: NS=display_custom;
-            		endcase
-         	end
+				ID:  	NS=identity;
+				INV:  	NS=invert;
+				BL:   	NS=blur;
+               			BR:   	NS=brighten;
+               			CUST: 	NS=display_custom;
+            		endcase         	
+		end
       endcase
 
 always@(posedge clk_25M or negedge rst)		//State outputs
